@@ -1,0 +1,19 @@
+<h1>Visited Sites</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Site URL</th>
+      <th>Number of Visits</th>
+      <th>Average Visit Duration (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @site_visits.each do |page_url, visit_count| %>
+        <tr>
+          <td><%= page_url %></td>
+          <td><%= visit_count %></td>
+          <td><%= @average_durations[page_url].to_i %></td> <!-- Convert to integer for display -->
+        </tr>
+    <% end %>
+  </tbody>
+</table>
