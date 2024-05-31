@@ -1,0 +1,20 @@
+<h1>Dashboard</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Site URL</th>
+      <th>Number of Visits</th>
+      <th>Average Visit Duration (ms)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @visits.each do |page_url, visit_count| %>
+      <tr>
+        <td><%= page_url %></td>
+        <td><%= visit_count %></td>
+        <td><%= @average_durations[page_url].to_i %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

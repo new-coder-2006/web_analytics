@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'dashboard/index'
+  get 'users/show'
+  devise_for :users, controllers: {
+    registrations: "users/registrations"
+  }
+  
   get 'sites/index'
   get 'home/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -11,4 +17,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
   get "sites", to: "sites#index"
+
+  resource :user, only: [:show]
+
+  authenticated :user do
+    root "dashboard#index", as: :authenticated_root
+  end
 end
