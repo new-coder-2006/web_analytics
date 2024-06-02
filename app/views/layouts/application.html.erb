@@ -6,11 +6,21 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag 'custom', media: 'all', 'data-turbo-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', type: 'module' %>
+    <%= javascript_include_tag 'tracker', type: 'module' %>
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <p>
+        Logged in as <%= current_user.email %>
+        <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+      </p>
+    <% else %>
+      <%= link_to 'Sign in', new_user_session_path %> |
+      <%= link_to 'Sign up', new_user_registration_path %>
+    <% end %>
     <%= yield %>
-    <%= javascript_include_tag 'tracker', type: 'module' %>
   </body>
 </html>
