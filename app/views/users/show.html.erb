@@ -1,28 +1,30 @@
-<h1>Welcome, <%= current_user.email %></h1>
-<p>Your tracking code:</p>
-<pre>
-&lt;script type="text/javascript"&gt;
-      document.addEventListener("DOMContentLoaded", function() {
-        var startTime = Date.now();
-        window.addEventListener("beforeunload", function() {
-          var endTime = Date.now();
-          var visitDuration = endTime - startTime;
+<div class="container mt-5">
+  <h1>Welcome, <%= current_user.email %></h1>
+  <p>Your tracking code:</p>
+  <pre>
+  &lt;script type="text/javascript"&gt;
+        document.addEventListener("DOMContentLoaded", function() {
+          var startTime = Date.now();
+          window.addEventListener("beforeunload", function() {
+            var endTime = Date.now();
+            var visitDuration = endTime - startTime;
 
-          var trackingCode = "<%= current_user.tracking_code %>";
-          var pageUrl = encodeURIComponent(window.location.href);
-          var duration = visitDuration;
+            var trackingCode = "<%= current_user.tracking_code %>";
+            var pageUrl = encodeURIComponent(window.location.href);
+            var duration = visitDuration;
 
-          var params = `tracking_code=${trackingCode}&page_url=${pageUrl}&duration=${duration}`;
+            var params = `tracking_code=${trackingCode}&page_url=${pageUrl}&duration=${duration}`;
 
-          fetch("<%= request.base_url %>/track", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: params.toString(),
-            keepalive: true
+            fetch("<%= request.base_url %>/track", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+              },
+              body: params.toString(),
+              keepalive: true
+            });
           });
         });
-      });
-&lt;/script&gt;    
-</pre>
+  &lt;/script&gt;    
+  </pre>
+<div class="container mt-5">
