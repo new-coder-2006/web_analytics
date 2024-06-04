@@ -1,20 +1,22 @@
-<h1>Dashboard</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Site URL</th>
-      <th>Number of Visits</th>
-      <th>Average Visit Duration (ms)</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="container mt-5">
+  <h1>Dashboard</h1>
+  <div class="row">
     <% @visits.each do |page_url, visit_count| %>
-      <tr>
-        <td><%= page_url %></td>
-        <td><%= visit_count %></td>
-        <td><%= @average_durations[page_url].to_i %></td>
-      </tr>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title"><%= page_url %></h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <strong>Visits:</strong> <%= visit_count %><br>
+              <strong>Average Duration:</strong> <%= @average_durations[page_url].to_i %> milliseconds
+            </p>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
+
 
